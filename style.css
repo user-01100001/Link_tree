@@ -1,0 +1,324 @@
+:root {
+  --bg: linear-gradient(to right, #001F3F, #007BFF);
+  --card-bg: rgba(0, 0, 50, 0.6);
+  --link-color: #00aaff;
+  --text-color: #fff;
+  --hover-color: #008ecc;
+}
+
+body.dark {
+  --bg: linear-gradient(to right, #121212, #2c3e50);
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --link-color: #1abc9c;
+  --text-color: #f0f0f0;
+  --hover-color: #16a085;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  font-family: 'Segoe UI', sans-serif;
+  color: var(--text-color);
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  text-align: center;
+  transition: background 0.4s ease, color 0.3s;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.bg-cube {
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/e0/Rubik%27s_cube.svg');
+  background-size: 200px;
+  background-repeat: no-repeat;
+  background-position: center top;
+  opacity: 0.03;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  z-index: -1;
+}
+
+.geoshapes::before,
+.geoshapes::after {
+  content: '';
+  position: fixed;
+  z-index: -1;
+  opacity: 0.05;
+  border-radius: 50%;
+  animation: float 10s infinite ease-in-out;
+}
+
+.geoshapes::before {
+  width: 250px;
+  height: 250px;
+  background: #00d4ff;
+  top: 10%;
+  left: -10%;
+}
+
+.geoshapes::after {
+  width: 300px;
+  height: 300px;
+  background: #0000ff;
+  bottom: -50px;
+  right: -50px;
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(20px); }
+}
+
+.container {
+  max-width: 600px;
+  margin: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.profile-card {
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: 15px;
+  margin-bottom: 2rem;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  transition: background 0.3s;
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid var(--link-color);
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: 1.8rem;
+}
+
+.tagline {
+  opacity: 0.8;
+  font-size: 1rem;
+  margin-top: 0.3rem;
+}
+
+.links a {
+  display: block;
+  background-color: var(--link-color);
+  color: white;
+  text-decoration: none;
+  margin: 0.8rem 0;
+  padding: 1rem;
+  border-radius: 10px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.links a:hover {
+  background-color: var(--hover-color);
+  transform: scale(1.05);
+}
+.links a {
+  transition: all 0.4s ease-in-out;
+  z-index: 2;
+  position: relative;
+}
+
+.links:hover a {
+  filter: blur(2px);
+  opacity: 0.6;
+}
+
+.links a:hover {
+  filter: blur(0);
+  opacity: 1;
+  transform: scale(1.15);
+  background: linear-gradient(135deg, #00ffff, #007BFF);
+  box-shadow: 0 0 20px #00ffff88, 0 0 5px #007bff55 inset;
+  text-shadow: 0 0 5px #ffffffaa;
+}
+
+
+footer {
+  margin-top: 2rem;
+  font-size: 0.8rem;
+  opacity: 0.6;
+}
+
+/* Toggle Theme Switch */
+.toggle-theme {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 52px;
+  height: 28px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  background-color: #ccc;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 28px;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px;
+  left: 4px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+  transform: translateX(24px);
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+  .links a {
+    padding: 0.9rem;
+    font-size: 1rem;
+  }
+
+  .profile-card {
+    padding: 1.5rem;
+  }
+}
+.sliding-banner {
+  overflow: hidden;
+  white-space: nowrap;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+  padding: 1rem 0;
+  margin-bottom: 2rem;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(6px);
+  border-top: 1px solid #00ffff33;
+  border-bottom: 1px solid #00ffff33;
+}
+
+.sliding-banner p {
+  display: inline-block;
+  animation: scrollBanner 25s linear infinite;
+  font-size: 1.1rem;
+  color: #00f0ff;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-shadow: 0 0 4px #00ffff88;
+}
+
+@keyframes scrollBanner {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+
+/* Hover Focus Effect */
+.links a {
+  transition: all 0.4s ease;
+  z-index: 2;
+}
+
+.links:hover a {
+  filter: blur(2px);
+  opacity: 0.6;
+  transform: scale(1);
+}
+
+.links a:hover {
+  filter: blur(0);
+  opacity: 1;
+  transform: scale(1.1) rotate(0.5deg);
+  box-shadow: 0 0 15px #00ffff88;
+}
+
+/* Extra Geometric Element */
+body::before {
+  content: '';
+  position: fixed;
+  top: 20%;
+  right: 10%;
+  width: 100px;
+  height: 100px;
+  background: conic-gradient(#00ffff, transparent, #007BFF);
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+  opacity: 0.06;
+  animation: spin 20s linear infinite;
+  z-index: -2;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+/* Floating Shapes */
+.floating-shape {
+  position: fixed;
+  border-radius: 50%;
+  z-index: -2;
+  opacity: 0.08;
+  animation: floatShapes 10s infinite alternate ease-in-out;
+}
+
+.shape1 {
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, #00ffff, transparent);
+  top: 10%;
+  left: 5%;
+}
+
+.shape2 {
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(45deg, #00aaff, #005577);
+  bottom: 15%;
+  right: 5%;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
+.shape3 {
+  width: 60px;
+  height: 60px;
+  background: conic-gradient(from 90deg, #00ffffaa, transparent);
+  top: 50%;
+  left: 80%;
+}
+
+@keyframes floatShapes {
+  0% { transform: translateY(0) rotate(0deg); }
+  100% { transform: translateY(20px) rotate(360deg); }
+}
